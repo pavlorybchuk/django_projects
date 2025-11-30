@@ -1,0 +1,162 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  padding: 40px;
+  text-align: center;
+}
+table {
+  border-collapse: collapse;
+  width: 90%;
+  margin: 0 auto;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+th,
+td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+th {
+  background: #007bff;
+  color: white;
+}
+.table-btn {
+  border-width: 0;
+  padding: 4px 8px;
+}
+.table-btn.change-btn {
+  background-color: rgb(235, 174, 20);
+  cursor: pointer;
+}
+.table-btn.del-btn {
+  background-color: rgb(235, 20, 20);
+  color: white;
+  cursor: pointer;
+}
+
+.aside-triger {
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #000000;
+  opacity: 0.3;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  z-index: 900;
+}
+
+.aside-triger.hidden {
+  display: none;
+}
+
+.change-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.change-modal div {
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.change-modal.hidden {
+  display: none;
+}
+
+.change-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.change-form label {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.change-form input {
+  padding: 8px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.change-form button {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  max-width: 250px;
+  cursor: pointer;
+  margin: 5px auto;
+  width: 100%;
+}
+
+.change-form button:hover {
+  background-color: #0056b3;
+}
+
+#close-modal,
+#delete-form > button[type="submit"] {
+  background-color: rgb(235, 20, 20) !important;
+}
+
+#close-modal:hover,
+#delete-form > button[type="submit"]:hover {
+  background-color: rgb(205, 17, 17) !important;
+}
+
+.messages {
+  margin: 10px 0;
+}
+
+.msg {
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  font-size: 15px;
+  transition: opacity 0.5s ease;
+}
+
+.msg.success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.msg.error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.msg.warning {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.msg.info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.alert-row {
+  background-color: #90232e;
+  color: white;
+}

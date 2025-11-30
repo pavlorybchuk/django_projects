@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ratings info</title>
+  </head>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'task_2_3/css/styles_rating.css' %}" />
+  <body>
+    <div class="wrapper">
+      <h1 class="main_title">Rating statistic</h1>
+      {% if not message %}
+      <canvas
+        id="diagram"
+        width="600"
+        height="300"
+        class="diagram"
+        data-count_1="{{ count_1 }}"
+        data-count_2="{{ count_2 }}"
+        data-count_3="{{ count_3 }}"
+        data-count_4="{{ count_4 }}"
+        data-count_5="{{ count_5 }}"
+      ></canvas>
+      <div>
+        <div class="stats">
+          <p>Total ratings: {{ total_feedbacks }}</p>
+          <p>Avarage rating: {{ average_rating }}</p>
+        </div>
+        <div class="stats">
+          <p>Fashion: {{ fashion }}</p>
+          <p>Median: {{ median }}</p>
+        </div>
+      </div>
+      <div class="names hidden">
+        {% for feedback in feedbacks %}
+        <p>{{ feedback.customer_name }}: {{ feedback.rating }}</p>
+        {% endfor %}
+      </div>
+      <button type="button" class="btn show-names" id="show-names">
+        Show names
+      </button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{% static 'task_2_3/js/script_rating.js' %}"></script>
+    {% else %}
+    <p>{{ message }}</p>
+    {% endif %}
+  </body>
+</html>

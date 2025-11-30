@@ -1,0 +1,42 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f0f2f5;
+  text-align: center;
+  margin-top: 100px;
+}
+form {
+  background: #fff;
+  display: inline-block;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+input {
+  padding: 8px;
+  margin: 8px;
+  width: 80px;
+  font-size: 16px;
+  min-width: 150px;
+  border-radius: 8px;
+}
+button {
+  padding: 8px 15px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+button:hover {
+  background: #0056b3;
+}
+.msg {
+  margin-top: 20px;
+  font-size: 18px;
+}
+.rules {
+  max-width: 400px;
+  margin: 0 auto 20px auto;
+  font-size: 14px;
+  color: #555;
+}

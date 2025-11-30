@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Anagram Check</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'task_2_3/css/styles_index.css' %}" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>Anagram check</h1>
+      <p class="rules">
+        Input two words to check if they are anagrams of each other.
+      </p>
+
+      <form method="POST" action="{% url 'anagram_check' %}">
+        {% csrf_token %}
+        <input type="text" name="word1" placeholder="First word" required />
+        <input type="text" name="word2" placeholder="Second word" required />
+        <button type="submit">Send</button>
+      </form>
+
+      <div class="msg">{{ message }}</div>
+    </div>
+  </body>
+</html>

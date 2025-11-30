@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Вітальна сторінка</title>
+    {% load static %} <link rel="stylesheet" href="{% static "cookies_sessions/css/styles_index.css" %}">
+  </head>
+  <body>
+    <div class="dots" aria-hidden="true">
+      <span class="dot a"></span>
+      <span class="dot b"></span>
+      <span class="dot c"></span>
+    </div>
+
+    <main class="card" role="main" aria-label="Вітальна сторінка">
+      <section class="hero">
+        <h1>Вітаю! Ласкаво просимо 👋</h1>
+        <p class="lead">
+          Ця сторінка — готовий шаблон привітання. Можеш змінити текст, кольори
+          або додати власні зображення. Анімації легкі і не відволікають.
+        </p>
+
+        <div class="cta-row">
+          <a
+            class="btn btn-primary"
+            href="#"
+            onclick="alert('Дякую! Зв’язок ще не підключено.');return false;"
+            >Почати</a
+          >
+          <a
+            class="btn btn-outline"
+            href="#"
+            onclick="alert('Налаштуйте свій профіль у налаштуваннях.');return false;"
+            >Налаштувати</a
+          >
+        </div>
+
+        <p class="sub">
+          Потрібна допомога з адаптацією під мобільні пристрої або додатковою
+          логікою? Напиши — я допоможу.<br />
+          {{ cookies }} | <p>{{ visits }}</p>
+        </p>
+      </section>
+
+      <aside class="greeting-card" aria-label="Карточка привітання">
+        <div class="avatar" aria-hidden="true">PR</div>
+        <div class="greeting">Щиро вітаю, Павло!</div>
+        <div class="sub">Хай сьогодні буде продуктивним і натхненним.</div>
+
+        <div class="footer">
+          <div>📅 <time datetime="2025-11-28">28 листопада 2025</time></div>
+          <div style="opacity: 0.85">Made with ♥</div>
+        </div>
+      </aside>
+    </main>
+  </body>
+</html>

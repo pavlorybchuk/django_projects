@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Вгадай число</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'guessgame/css/styles.css' %}" />
+  </head>
+  <body>
+    <h1>Guess Game</h1>
+    <p class="rules">
+      Rules: you must guess early generated number 1-100. After you submit your
+      number (n), the program will compare generated number (x) n&lt=x or n&gt=x
+      and display relevant message.<br />Good luck!
+    </p>
+
+    <form method="POST">
+      {% csrf_token %}
+      <input
+        type="number"
+        name="guess"
+        placeholder="Your number"
+        value="{{ user_guess }}"
+        min="1"
+        max="100"
+        required
+      />
+      <button type="submit">Send</button>
+    </form>
+
+    <div class="msg">{{ message }}</div>
+  </body>
+</html>

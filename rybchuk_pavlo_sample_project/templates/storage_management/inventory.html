@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Складські залишки</title>
+    {% load static %}
+    <link
+      rel="stylesheet"
+      href="{% static 'storage_management/css/styles_index.css' %}"
+    />
+  </head>
+
+  <body>
+    <h1>Стан запасів на складах</h1>
+    {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+      <div class="msg {{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Товар</th>
+          <th>Категорія</th>
+          <th>Склад</th>
+          <th>Кількість</th>
+          <th>Мінімальний запас</th>
+          <th>Останнє поповнення</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for rec in records %}
+        <tr class="{% if rec.is_below_minimum %} alert-row {% endif %}">
+          <td>{{ rec.uuid }}</td>
+          <td>{{ rec.product.name }}</td>
+          <td>{{ rec.product.category.full_path }}</td>
+          <td>{{ rec.warehouse.title }}</td>
+          <td>{{ rec.quantity }}</td>
+          <td>{{ rec.min_required }}</td>
+          <td>
+            {% if rec.last_restock %} {{ rec.last_restock }} {% else %} ——— {% endif %}
+          </td>
+          <td>
+            <button class="table-btn change-btn" data-rec-id="{{ rec.uuid }}">
+              Змінити
+            </button>
+            <button class="table-btn del-btn" data-rec-id="{{ rec.uuid }}">
+              Видалити
+            </button>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="8">Записів поки немає</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="aside-triger hidden" id="aside_trigger"></div>
+
+    <div class="change-modal hidden" id="change_modal">
+      <div>
+        <h2>Змінити запис інвентарю</h2>
+        <form
+          id="change-form"
+          class="change-form"
+          action="{% url 'inventory_edit' %}"
+          method="post"
+        >
+          {% csrf_token %}
+          <input type="hidden" name="rec_id" id="rec_id" value="" />
+
+          <label for="quantity">Кількість:</label><br />
+          <input type="number" id="quantity" name="quantity" /><br />
+
+          <label for="min_required">Мінімальний запас:</label><br />
+          <input type="number" id="min_required" name="min_required" /><br />
+
+          <label for="last_restock">Останнє поповнення:</label><br />
+          <input
+            type="datetime-local"
+            id="last_restock"
+            name="last_restock"
+          /><br /><br />
+
+          <button type="submit">Зберегти зміни</button>
+          <button type="button" id="close-modal">Скасувати</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="change-modal hidden" id="delete_modal">
+      <div>
+        <h2>Ви точно хочете видалити запис?</h2>
+        <form
+          id="delete-form"
+          class="change-form"
+          action="{% url 'inventory_delete' %}"
+          method="post"
+        >
+          {% csrf_token %}
+          <input type="hidden" name="del_rec_id" id="del_rec_id" value="" />
+          <button type="submit">Видалити</button>
+          <button type="button" id="close-delete-modal">Скасувати</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="{% static 'storage_management/js/script_inventory.js' %}"></script>
+    <script src="{% static 'storage_management/js/message.js' %}"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const lest_restock_input = document.querySelector("#last_restock");
+        const now = new Date();
+        const localISOTime = new Date(
+          now.getTime() - now.getTimezoneOffset() * 60000
+        )
+          .toISOString()
+          .slice(0, 16);
+
+        lest_restock_input.value = localISOTime;
+      });
+    </script>
+  </body>
+</html>
